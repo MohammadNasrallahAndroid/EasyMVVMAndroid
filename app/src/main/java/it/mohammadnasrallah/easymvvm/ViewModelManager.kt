@@ -40,22 +40,22 @@ internal class ViewModelManager<VM : ViewModel<*, *>?> {
             if (state != null) {
                 model = state.getParcelable(ViewModel.MODEL)
             }
-            (viewModel as ViewModel?)!!.initArgumentAndModel(args, model)
+            viewModel?.initArgumentAndModel(args as Nothing?, model as Nothing?)
         }
-        viewModel!!.attachActivity(container)
+        viewModel?.attachActivity(container)
         return viewModel
     }
 
     fun resume() {
-        viewModel!!.resume()
+        viewModel?.resume()
     }
 
     fun pause() {
-        viewModel!!.pause()
+        viewModel?.pause()
     }
 
     fun destroy() {
-        viewModel!!.detachView()
+        viewModel?.detachView()
     }
 
     fun saveState(outState: Bundle) {
@@ -63,7 +63,7 @@ internal class ViewModelManager<VM : ViewModel<*, *>?> {
     }
 
     fun onBackPressed(activity: Activity) {
-        val result = viewModel!!.onBackPressed()
+        val result = viewModel?.onBackPressed()
         if (result != null) {
             val intent = Intent()
             intent.putExtra(RESULT_DATA, result.getData() as Parcelable)
@@ -73,7 +73,7 @@ internal class ViewModelManager<VM : ViewModel<*, *>?> {
 
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val resultData = data?.getParcelableExtra<Parcelable>(RESULT_DATA)
-        viewModel!!.onResult(requestCode, ActivityResult(resultCode, resultData!!))
+        viewModel?.onResult(requestCode, ActivityResult(resultCode, resultData!!))
     }
 
     fun onCreateOptionsMenu(menu: Menu?, menuInflater: MenuInflater): Boolean {

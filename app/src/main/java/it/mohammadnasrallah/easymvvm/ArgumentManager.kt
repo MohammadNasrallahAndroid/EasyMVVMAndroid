@@ -13,7 +13,7 @@ object ArgumentManager {
         return arguments[ARGUMENT]
     }
 
-    fun writeArgument(intent: Intent, argument: Any?): Intent {
+    private fun writeArgument(intent: Intent, argument: Any?): Intent {
         if (argument != null) {
             if (argument is Int) {
                 intent.putExtra(ARGUMENT, argument as Int?)
@@ -36,7 +36,7 @@ object ArgumentManager {
         return intent
     }
 
-    fun writeArgument(bundle: Bundle, argument: Any?): Bundle {
+    private fun writeArgument(bundle: Bundle, argument: Any?): Bundle {
         if (argument != null) {
             if (argument is Int) {
                 bundle.putInt(ARGUMENT, (argument as Int?)!!)
